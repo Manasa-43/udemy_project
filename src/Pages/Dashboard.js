@@ -120,12 +120,12 @@ function CrudButton ({type,onAdd}) {
 
                                 {bookList.map((book, index) => (
                                     <Grid item md={4} sm={4} xs={12} key={book.isbn}>
-                                        <Card sx={{ maxWidth: 300, backgroundColor: '#effaf8',cursor:'pointer' }}
+                                        <Card sx={{ maxWidth: 300, backgroundColor: '#effaf8',cursor:'pointer',minHeight:200}}
                                         onClick= {()=>{navigate(`/Book/${book.isbn}`)}}
                                         >
                                             <CardContent>
                                                 <Grid container display='flex' alignItems='center' justifyContent='space-between'>
-                                                    <Grid item md={4} sm={12}>
+                                                    <Grid item md={4} sm={12}spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                                         <CardMedia sx={{ height: 100, width: 80, margin: 'auto' }}
                                                             image={BookStatic}
                                                         />
