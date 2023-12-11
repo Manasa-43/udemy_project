@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(./Assets/fonts/Poppins-SemiBold.ttf);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.semiBold {
+  font-family: poppinsSemiBold !important;
 }
-
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: poppinsMedium;
+  src: url(./Assets/fonts/Poppins-MediumItalic.ttf);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.poppinsMedium{
+  font-family: poppinsMedium !important;
+}
+@font-face {
+  font-family: poppinsMed;
+  src: url(./Assets/fonts/Poppins-Medium.ttf);
+}
+.poppinsMed{
+  font-family: poppinsMed !important;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(./Assets/fonts/Poppins-Bold.ttf);
+}
+.extraBold{
+  font-family: poppinsBold !important;
+}
+@font-face {
+  font-family: poppinsSemiBoldItalic;
+  src: url(./Assets/fonts/Poppins-SemiBoldItalic.ttf);
+}
+.extraSemiBoldItalic{
+  font-family: poppinsSemiBoldItalic !important;
+}
+@font-face {
+  font-family: poppinsExtraBoldItalic;
+  src: url(./Assets/fonts/Poppins-ExtraBoldItalic.ttf);
+}
+.extraBoldItalic{
+  font-family: poppinsExtraBoldItalic !important;
 }

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bookstoredb
+    ports:
+      - "3306:3306"
+ 
+  bookstore:
+    image: sumalathaupdraft/bookstore
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/bookstoredb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - APP_BASIC_AUTH_USERNAME=admin
+      - APP_BASIC_AUTH_PASSWORD=admin
+    depends_on:
+      - mysqldb
