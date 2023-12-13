@@ -333,6 +333,17 @@ export default function Register() {
                                         my: '1rem'
                                     }}
                                 >Submit</Button>
+                                 <Button
+                  onClick={()=>navigate('/')}
+                  variant="contained"
+                  sx={{
+                    textTransform: 'none',
+                    color: 'primary.light',
+                    backgroundColor: '#e63946',
+                    m: '1rem',
+                    "&:hover": { background: "#F21010" },
+                  }}
+                >Cancel</Button>
                             </Grid>
                         </Grid>
                     </CardContent>

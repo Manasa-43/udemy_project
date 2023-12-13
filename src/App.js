@@ -11,6 +11,8 @@ import Dashboard from "./Pages/Dashboard";
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom'
 import AddBook from "./Pages/AddBook";
 import BookDetail from "./Pages/BookDetail";
+import DeleteBook from "./Pages/DeleteBook";
+
 
 const theme = createTheme({
   // typography: {
@@ -50,8 +52,8 @@ export default function App() {
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/Book/:id' element={<BookDetail />} />
             <Route path='/Add' element={<AddBook />} />
-
-
+            <Route path='/Delete' element={<DeleteBook />} />
+           
           </Routes>
 
         </div>

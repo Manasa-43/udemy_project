@@ -116,7 +116,7 @@ function CrudButton ({type,onAdd}) {
                     )
                     : (
                         <Box>
-                            <Grid container display='flex'>
+                            <Grid container display='flex' spacing={2}>
 
                                 {bookList.map((book, index) => (
                                     <Grid item md={4} sm={4} xs={12} key={book.isbn}>

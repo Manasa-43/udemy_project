@@ -5,28 +5,18 @@ import Typography from '@mui/material/Typography';
 import BookStatic from "../Assets/dashBook1.png"
 import { BrowserRouter, Router, Route, Routes, useNavigate } from 'react-router-dom'
 import Navbar from "../Components/Navbar";
-import CardContent from '@mui/material/CardContent';
-import Card from '@mui/material/Card';
+
 import Grid from "@mui/material/Grid";
-import CardMedia from '@mui/material/CardMedia';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import axios from "axios"
-import ListItemText from '@mui/material/ListItemText';
+
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import Paper from '@mui/material/Paper';
-import stles from "../App.css"
-import { CssBaseline } from "@mui/material";
+
 import Alert from '@mui/material/Alert';
 // #e3f7f4
 
@@ -69,13 +59,7 @@ export default function AddBook() {
             setForm((prev) => ({ ...prev, [name]: Number(value) }))
         }
         
-        else if (name === 'publishDate') {
-            console.log(value)
-            // let dt =new Date(value)
-            // let modDate = `${dt.getDate()}-${dt.getMonth() +1}-${dt.getFullYear()}`
-            setForm((prev) => ({ ...prev, [name]:value }))
-        } 
-
+        
         else {
             setForm((prev) => ({ ...prev, [name]: value }))
         }

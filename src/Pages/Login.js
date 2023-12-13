@@ -211,7 +211,7 @@ export default function Login() {
                   }}
                 >Login</Button>
                 <Button
-                  // onClick={handleSubmit}
+                  onClick={()=>navigate('/')}
                   variant="contained"
                   sx={{
                     textTransform: 'none',
@@ -220,7 +220,7 @@ export default function Login() {
                     m: '1rem',
                     "&:hover": { background: "#F21010" },
                   }}
-                >Home</Button>
+                >Cancel</Button>
                 {/* <Typography  component="div" sx={{ color:'#e63946',fontSize:'12px'}}  >
                  Home
                 </Typography> */}
