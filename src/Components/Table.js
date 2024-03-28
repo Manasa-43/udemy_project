@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import axios from "axios"
+import Button from '@mui/material/Button';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -46,8 +48,58 @@ let books = [
   }
 ]
 
+
+
+
+
+
+
 export default function BasicTable() {
+
+  const [bookList,setBookList] = React.useState(books)
+  const [selectedArray,setSelectedArray] = React.useState([])
+  const [isbn,setIsbn] = React.useState([])
+
+  React.useEffect(() =>
+  async () => {
+      try {
+          const bookOutput = await axios.get('http://localhost:8080/BookStore/Books')
+          // console.log(bookOutput)
+          let arr = bookOutput.data
+          
+         
+          
+          setBookList(arr.map((ele)=> ({...ele,isSelected:false})))
+      }
+      catch (error) {
+          console.log(error)
+      }
+
+  }
+
+
+  , [])
+
+  const handleChecked = (e,selectedId) =>{
+    console.log(e.target.checked,selectedId)
+    
+    // console.log(bookList)
+    setBookList(bookList.map((ele)=> (selectedId === ele.isbn ? {...ele,isSelected:e.target.checked} : {...ele})))
+    
+  }
+
+  const onDelete = ()=>{
+    // console.log('clicked')
+    let arr = [...bookList]
+   let final =  arr.filter(item=> item.isSelected === true)
+   console.log(final)
+  final.forEach((item)=>(setIsbn(prev=>[...prev,item.isbn])))
+  
+  }
+  console.log(isbn)
+// console.log('final',bookList)
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -64,13 +116,13 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
        
-          {books.map((row) => (
+          {bookList.map((row) => (
             <TableRow
               key={row.isbn}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell>
-              <Checkbox  />
+              <Checkbox onChange={(e)=>handleChecked(e,row.isbn)}/>
               </TableCell>
              
               <TableCell align="right">{row.isbn}</TableCell>
@@ -82,5 +134,18 @@ export default function BasicTable() {
         </TableBody>
       </Table>
     </TableContainer>
+    <Button
+    onClick={()=>onDelete()}
+    variant="contained"
+    sx={{
+        textTransform: 'none',
+        color: 'primary.light',
+        backgroundColor: 'primary.dark',
+        m: '1rem',
+        width:'2rem'
+    }}
+>Delete</Button>
+    </>
+    
   );
 }

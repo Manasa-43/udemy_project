@@ -82,82 +82,83 @@ export default function AddBook() {
 
         // let obj = { ...form, publishDate: '04-12-2023' }
 
-        if (form.isbn.length !== 12 || !isValidIsbn) {
-            setFormError((prev) => ({ ...prev, isbnError: 'Give a 12 digit number' }))
+        if (form.isbn.length !== 12 ) {
+            setFormError((prev) => ({ ...prev, isbnError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, isbnError: '' }))
+            console.log('is it coming in else')
+            setFormError((prev) => ({ ...prev, isbnError: false }))
         }
 
         if (form.subTitle === '') {
-            setFormError((prev) => ({ ...prev, subTitleError: "Sub title can't be empty" }))
+            setFormError((prev) => ({ ...prev, subTitleError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, subTitleError: "" }))
+            setFormError((prev) => ({ ...prev, subTitleError: false }))
         }
 
         if (form.author === '') {
-            setFormError((prev) => ({ ...prev, authorError: "Title can't be empty" }))
+            setFormError((prev) => ({ ...prev, authorError: true}))
         }
         else {
-            setFormError((prev) => ({ ...prev, authorError: "" }))
+            setFormError((prev) => ({ ...prev, authorError: false }))
         }
 
         if (form.publisher === '') {
-            setFormError((prev) => ({ ...prev, publisherError: "Publisher can't be empty" }))
+            setFormError((prev) => ({ ...prev, publisherError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, publisherError: "" }))
+            setFormError((prev) => ({ ...prev, publisherError: false }))
         }
 
         if (form.description === '') {
-            setFormError((prev) => ({ ...prev, descriptionError: "Description  can't be empty" }))
+            setFormError((prev) => ({ ...prev, descriptionError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, descriptionError: "" }))
+            setFormError((prev) => ({ ...prev, descriptionError: false }))
         }
 
         if (form.title === '') {
-            setFormError((prev) => ({ ...prev, titleError: "Title can't be empty" }))
+            setFormError((prev) => ({ ...prev, titleError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, titleError: "" }))
+            setFormError((prev) => ({ ...prev, titleError: false }))
         }
 
-        if (form.pages.length <= 0 || Number(form.pages) === 0 || !isValidPages) {
-            setFormError((prev) => ({ ...prev, pagesError: "Pages can't be empty" }))
+        if (form.pages.length <= 0 || Number(form.pages) === 0 || isValidPages) {
+            setFormError((prev) => ({ ...prev, pagesError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, pagesError: "" }))
+            setFormError((prev) => ({ ...prev, pagesError: false }))
         }
 
         if (form.publishDate === '') {
-            setFormError((prev) => ({ ...prev, publishDateError: "Date can't be empty" }))
+            setFormError((prev) => ({ ...prev, publishDateError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, publishDateError: "" }))
+            setFormError((prev) => ({ ...prev, publishDateError: false }))
         }
 
         if (form.website === '') {
-            setFormError((prev) => ({ ...prev, websiteError: "Website can't be empty" }))
+            setFormError((prev) => ({ ...prev, websiteError: true }))
         }
         else {
-            setFormError((prev) => ({ ...prev, websiteError: "" }))
+            setFormError((prev) => ({ ...prev, websiteError: false }))
         }
         console.log(formError)
         console.log(formError.isbnError )
         console.log(true && true)
-        // if (
-        //     formError.isbnError == ' ' &&
-        //     formError.titleError == ' ' &&
-        //     formError.authorError == ' ' &&
-        //     formError.subTitleError == ' ' &&
-        //     formError.publisherError == ' ' &&
-        //     formError.publishDateError == ' ' &&
-        //     formError.pagesError == ' ' &&
-        //     formError.descriptionError == ' ' &&
-        //     formError.websiteError == ' '
-        // ) 
+        if (
+            formError.isbnError === false &&
+            formError.titleError === false &&
+            formError.authorError === false &&
+            formError.subTitleError === false &&
+            formError.publisherError === false &&
+            formError.publishDateError === false &&
+            formError.pagesError === false &&
+            formError.descriptionError === false &&
+            formError.websiteError === false
+        ) 
         {
             console.log(' coming if')
             try{
@@ -190,9 +191,9 @@ export default function AddBook() {
                 setAlert(error.message)
             }
         }
-        // else{
-        //     console.log('not coming')
-        // }
+        else{
+            console.log('not coming')
+        }
     }
     console.log(form)
     function CustomTextfield({ label, onFieldChange, name }) {
@@ -295,6 +296,7 @@ export default function AddBook() {
                                 <Grid item md={6}>
                                     <List  >
                                         <ListItem >
+                                           
                                             <TextField
                                                 variant='standard'
                                                 id="standard-basic"
@@ -304,8 +306,9 @@ export default function AddBook() {
                                                 name='isbn'
                                                 value={form.isbn}
                                                 onChange={(e) => { handleForm(e) }}
-                                                error={formError.isbnError}
-                                                helperText={formError.isbnError}
+                            
+                                                error = {formError.isbnError}
+                                                helperText={formError.isbnError ? ('ISBN should be 12 digits') : ('')}
                                                 size="small"
 
                                             />
@@ -320,8 +323,8 @@ export default function AddBook() {
                                                 name='title'
                                                 value={form.title}
                                                 onChange={(e) => { handleForm(e) }}
-                                                error={formError.titleError}
-                                                helperText={formError.titleError}
+                                                error={formError.titleError }
+                                                helperText={formError.titleError ? ("Title can't be empty") : ('')}
                                                 size="small"
                                             />
                                         </ListItem>
@@ -336,7 +339,7 @@ export default function AddBook() {
                                                 value={form.author}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.authorError}
-                                                helperText={formError.authorError}
+                                                helperText={formError.authorError ? ("Author can't be empty") : ('')}
                                                 size="small"
                                             />
                                         </ListItem>
@@ -351,7 +354,7 @@ export default function AddBook() {
                                                 value={form.publisher}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.publisherError}
-                                                helperText={formError.publisherError}
+                                                helperText={formError.publisherError ? ("Publisher can't be empty") : ('')}
                                                 size="small"
                                             />
                                         </ListItem>
@@ -366,7 +369,7 @@ export default function AddBook() {
                                                 value={form.pages}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.pagesError}
-                                                helperText={formError.pagesError}
+                                                helperText={formError.pagesError ? ("Pages can't be empty") : ('')}
                                                 size="small"
                                             />
                                         </ListItem>
@@ -385,7 +388,7 @@ export default function AddBook() {
                                                 value={form.publishDate}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.publishDateError}
-                                                helperText={formError.publishDateError}
+                                                helperText={formError.publishDateError ? ("Published date can't be empty") : ('')}
                                                 size="small"
                                                 
                                             />
@@ -414,7 +417,8 @@ export default function AddBook() {
                                                 value={form.subTitle}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.subTitleError}
-                                                helperText={formError.subTitleError}
+                                              
+                                                helperText={formError.subTitleError ? ("Subtitle can't be empty") : ('')}
                                             // sx={{mb:'2.5rem'}}
                                             />
                                         </ListItem>
@@ -431,7 +435,7 @@ export default function AddBook() {
                                                 value={form.description}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.descriptionError}
-                                                helperText={formError.descriptionError}
+                                                helperText={formError.descriptionError ? ("Description can't be empty") : ('')}
                                             // sx={{mt:'2.5rem'}}
                                             />
                                         </ListItem>
@@ -449,7 +453,7 @@ export default function AddBook() {
                                                 value={form.website}
                                                 onChange={(e) => { handleForm(e) }}
                                                 error={formError.websiteError}
-                                                helperText={formError.websiteError}
+                                                helperText={formError.websiteError ? ("Website can't be empty") : ('')}
                                             // sx={{mt:'2.5rem'}}
                                             />
                                         </ListItem>

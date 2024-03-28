@@ -73,6 +73,7 @@ export default function Login() {
 
 
   const handleSubmit = async () => {
+    navigate('/Dashboard')
     let obj = {
       userName: userName,
       password: password

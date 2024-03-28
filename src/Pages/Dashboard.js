@@ -24,6 +24,9 @@ export default function Dashboard() {
     
         navigate('/Add')
     }
+    function handleDelete(){
+        navigate('/Delete')
+    }
 
 function CrudButton ({type,onAdd}) {
     return(
@@ -159,7 +162,7 @@ function CrudButton ({type,onAdd}) {
                             </Grid >
                             <Grid container justifyContent='end' >
                             <CrudButton type = 'Add' onAdd={handleAdd} navigate={navigate}/>
-                           <CrudButton type = 'Delete'/> 
+                           <CrudButton type = 'Delete' onAdd={handleDelete} navigate={navigate} /> 
                             </Grid>
                            
                         </Box>
